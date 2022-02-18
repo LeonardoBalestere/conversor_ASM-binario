@@ -5,16 +5,6 @@ def processaPonto(linhaPonto):
     return 0
 
 
-def iniciaProcessoConversão(linhas, linhaAposPonto):
-    contadorLinhas = 0
-    for linhaAtual in linhas:
-        contadorLinhas += 1
-        if contadorLinhas < linhaAposPonto:
-            break
-
-    #A partir daqui ele será e interpretará o código, pois está após o .text
-
-
 nomeArquivo = input('Digite o nome do arquivo: ')
 with open(nomeArquivo, 'r') as conteúdoArquivo:
     linhas = conteúdoArquivo.readlines()
@@ -26,4 +16,4 @@ for linha in linhas:
             break
 
         if processaPonto(linha) == 1:
-            retorno = iniciaProcessoConversão(linhas, linhaAposPonto)
+            #Significa que achou o .text, posso continuar o código daqui, mais fácil que chamar uma função
