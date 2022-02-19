@@ -1,0 +1,45 @@
+.text
+	addi	$v0, $zero, 5
+	syscall
+
+	add	$s0, $zero, $v0
+	addi	$v0, $zero, 5
+	syscall
+
+	add	$s1, $zero, $v0
+	addi	$v0, $zero, 5
+	syscall
+
+	add	$s2, $zero, $v0
+	addi	$v0, $zero, 5
+	syscall
+
+	add	$s3, $zero, $v0
+
+	add	$s7, $s0, $s1
+	add	$s7, $s7, $s3
+
+	mul	$s4, $s0, $s0
+
+	mul	$s5, $s1, $s1
+
+	mul	$s5, $s5, $s1
+
+	mul	$s6, $s3, $s3
+	mul	$s6, $s6, $s3
+	mul	$s6, $s6, $s3
+	
+	add	$s7, $s7, $s4
+	add	$s7, $s7, $s5
+	add	$s7, $s7, $s6
+	
+	div	$s7, $s2
+	
+	mflo	$s0 
+		
+	addi 	$v0, $zero, 1
+	add 	$a0, $zero, $s0
+	syscall
+	
+	addi 	$v0, $zero, 10
+	syscall	

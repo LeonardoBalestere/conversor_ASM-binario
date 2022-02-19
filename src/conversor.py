@@ -5,15 +5,23 @@ def processaPonto(linhaPonto):
     return 0
 
 
-nomeArquivo = input('Digite o nome do arquivo: ')
+def limpaArquivoPosText():
+    with open('arquivoPosText', 'w') as arquivo:
+        arquivo.write('')
+
+
+nomeArquivo = input('Digite o nome do arquivo (com o .asm) que será convertido em linguagem de máquina: ')
+limpaArquivoPosText()
+pontoProcessado = False
+
 with open(nomeArquivo, 'r') as conteúdoArquivo:
     linhas = conteúdoArquivo.readlines()
 for linha in linhas:
-    linhaAposPonto = 0
-    for caracter in linhas:
-        linhaAposPonto += 1
-        while caracter != '.':
-            break
-
+    if not pontoProcessado:
         if processaPonto(linha) == 1:
-            #Significa que achou o .text, posso continuar o código daqui, mais fácil que chamar uma função
+            pontoProcessado = True
+    else:
+        ehComentario = linha.strip()
+        if ehComentario == '' or ehComentario[0] != '#':
+            with open('arquivoPosText', 'a') as adicionaNoArquivo:
+                adicionaNoArquivo.write(linha)
